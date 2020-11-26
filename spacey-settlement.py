@@ -5,13 +5,11 @@
 # importing modules
 import sys
 from time import sleep
+import webbrowser
 
 
 class bcolors:
-    HEADER = "\033[95m"
     OKBLUE = "\033[94m"
-    OKCYAN = "\033[96m"
-    OKGREEN = "\033[92m"
     WARNING = "\033[93m"
 
 
@@ -41,7 +39,7 @@ agriculture = (
     bcolors.OKBLUE
     + "Namaste "
     + name
-    + ", you are currently in the agriculture area where aeroponics takes place. Be careful there is a lot of carbon dioxide and gases out here.",
+    + ", you are currently in the agriculture area where aeroponics takes place. Be careful there is a lot of carbon dioxide and other gases out here.",
 )
 massd = (
     "Mass Driver",
@@ -111,9 +109,15 @@ while True:
     if conti == "yes":
         print("Great!!")
     else:
-        print(
-            bcolors.OKBLUE
-            + "Thank you for playing the SpaceY Settlement! You can watch the trailer of our settlement on aryaman.cc/spacey"
-        )
+        print(bcolors.OKBLUE + "Thank you for playing the SpaceY Settlement!")
+        video = input("Do you wanna watch the trailer of our Settlement[yes/no]? ")
+        if video == "yes":
+            url = "http://aryaman.cc/spacey"
+            chrome_path = (
+                "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s"
+            )
+            webbrowser.get(chrome_path).open(url)
+        else:
+            "Hope you come again!"
         break
 
