@@ -1,1 +1,1 @@
-# spacey-game
+# Spacey-game
