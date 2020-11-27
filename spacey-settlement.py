@@ -2,18 +2,18 @@
 # author: Aryaman Chandra
 # date: 26-11-2020
 
-# importing modules
+# importing modules like system and time to output a typing text effect
 import sys
 from time import sleep
 import webbrowser
 
-
+# using pycolors
 class bcolors:
     OKBLUE = "\033[94m"
     WARNING = "\033[93m"
 
 
-# user's name
+# username
 name = input(bcolors.OKBLUE + "What should I call you, sir? ")
 
 # introduction
@@ -24,12 +24,14 @@ introduction = (
     + ", you are at SpaceY Settlement. SpaceY is a big organisation led by Aryaman and Ashvin. It was a big success and thus led to this settlement. \n "
 )
 
+# the typing out effect
 for char in introduction:
     sleep(0.05)
     sys.stdout.write(char)
+    # makes the text come out one by one and not together
     sys.stdout.flush()
 
-# places
+# places using tuples
 residential = (
     "Residential Area",
     bcolors.OKBLUE + "Pranam " + name + ", you are currently in the Residential Area.",
@@ -72,7 +74,7 @@ balderol = (
 )
 
 
-# where all can the user go from the current location
+# where all can the user go from the current location using a dictionary and tuple
 transitions = {
     massd: (agriculture, residential, industrial, atlas, balderol),
     agriculture: (massd, residential),
@@ -84,20 +86,24 @@ transitions = {
 
 location = massd
 
+# starting the game using while loop
 while True:
-    # current location
+    # current location text
     for char in location[1]:
         sleep(0.05)
         sys.stdout.write(char)
         sys.stdout.flush()
     print("\n You can go to these places through SpaceY Mass Driver")
 
-    # providing the location
+    # providing the location that the user can go to
+    # enumerate assigns an index to each item
     for (i, t) in enumerate(transitions[location]):
         print(i + 1, t[0])
 
     # selecting the location
     choice = int(input("Where do you wanna go? "))
+
+    # assigning new location
     location = transitions[location][choice - 1]
     for char in location[1]:
         sleep(0.075)
@@ -110,6 +116,8 @@ while True:
         print("Great!!")
     else:
         print(bcolors.OKBLUE + "Thank you for playing the SpaceY Settlement!")
+
+        # showing the trailer
         video = input("Do you wanna watch the trailer of our Settlement[yes/no]? ")
         if video == "yes":
             url = "http://aryaman.cc/spacey"
